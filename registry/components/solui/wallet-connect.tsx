@@ -77,13 +77,15 @@ export default function Connect() {
             </>
           )}
         </div>
-
+        <AnimatePresence initial={false}>
         {isOpen && (
           <motion.div
             className="fixed inset-0 z-50 flex items-center justify-center backdrop-blur-lg"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.2 }}
+            exit={{ opacity: 0  }}
+            key="modal"
           >
             <div className="bg-white rounded-lg shadow-lg p-6 max-w-sm w-full">
               <div className="flex justify-between items-center mb-4">
@@ -165,6 +167,7 @@ export default function Connect() {
             </div>
           </motion.div>
         )}
+        </AnimatePresence>
       </div>
     );
   };
