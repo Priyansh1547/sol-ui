@@ -31,7 +31,7 @@ const TokenDropdown: React.FC<{
   };
 
   return (
-    <div className="relative z-20">
+    <div className="relative">
       <button
         type="button"
         onClick={() => setIsOpen(!isOpen)}
@@ -73,7 +73,7 @@ const TokenDropdown: React.FC<{
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: -10 }}
           transition={{ duration: 0.2 }}
-          className="absolute z-10 w-full mt-1 bg-white border border-gray-300 rounded-md shadow-lg"
+          className="absolute z-50 w-full mt-1 bg-white border border-gray-300 rounded-md shadow-lg max-h-[300px] overflow-y-auto"
         >
           <ul
             className="max-h-60 overflow-y-auto"
@@ -122,7 +122,7 @@ const SwapUI: React.FC = () => {
     const fetchTokens = async () => {
       try {
         const response = await fetch(
-          "https://tokens.jup.ag/tokens?tags=verified"
+          "https://tokens.jup.ag/tokens?tags=verified",
         );
         const data = await response.json();
         setTokens(data);
@@ -139,7 +139,7 @@ const SwapUI: React.FC = () => {
       try {
         const connection = new Connection(clusterApiUrl("devnet"), "confirmed");
         const wallet = new PublicKey(
-          "G2FAbFQPFa5qKXCetoFZQEvF9BVvCKbvUZvodpVidnoY"
+          "G2FAbFQPFa5qKXCetoFZQEvF9BVvCKbvUZvodpVidnoY",
         );
         const balance = await connection.getBalance(wallet);
         setSolBalance(balance / LAMPORTS_PER_SOL);
@@ -263,7 +263,7 @@ const SwapUI: React.FC = () => {
           transition={{ duration: 0.3 }}
         >
           <div className="flex justify-between items-center mb-1">
-          <span className="text-sm text-gray-600">You’re buying</span>
+            <span className="text-sm text-gray-600">You’re buying</span>
           </div>
           <div className="flex items-center justify-between">
             <TokenDropdown
